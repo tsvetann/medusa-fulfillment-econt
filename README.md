@@ -8,7 +8,7 @@
   </a>
 </p>
 <h1 align="center">
-  Medusa
+  Medusa Fulfillment Econt
 </h1>
 
 <h4 align="center">
@@ -17,54 +17,73 @@
 </h4>
 
 <p align="center">
-  Building blocks for digital commerce
+  Fulfillment plugin for econt.bg
 </p>
 <p align="center">
   <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
   </a>
-    <a href="https://www.producthunt.com/posts/medusa"><img src="https://img.shields.io/badge/Product%20Hunt-%231%20Product%20of%20the%20Day-%23DA552E" alt="Product Hunt"></a>
   <a href="https://discord.gg/xpCwq3Kfn8">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
   </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
+  <a href="https://twitter.com/intent/follow?screen_name=tsnnik">
+    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@tsnnik" alt="Follow @tsnnik" />
   </a>
 </p>
 
 ## Compatibility
 
-This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
+This plugin should be compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
 
-## Getting Started
+## Features
 
-Visit the [Quickstart Guide](https://docs.medusajs.com/create-medusa-app) to set up a server.
+- Query information about cities and offices covered by Econt. Create shipping labels
 
-Visit the [Docs](https://docs.medusajs.com/development/backend/prepare-environment) to learn more about our system requirements.
+## How to Install
 
-## What is Medusa
+1\. Run the following command in the directory of the Medusa backend:
 
-Medusa is a set of commerce modules and tools that allow you to build rich, reliable, and performant commerce applications without reinventing core commerce logic. The modules can be customized and used to build advanced ecommerce stores, marketplaces, or any product that needs foundational commerce primitives. All modules are open-source and freely available on npm.
+```bash
+npm install medusa-fulfillment-econt
+```
 
-Learn more about [Medusa’s architecture](https://docs.medusajs.com/development/fundamentals/architecture-overview) and [commerce modules](https://docs.medusajs.com/modules/overview) in the Docs.
+or
 
-## Roadmap, Upgrades & Plugins
+```bash
+yarn add medusa-fulfillment-econt
+```
 
-You can view the planned, started and completed features in the [Roadmap discussion](https://github.com/medusajs/medusa/discussions/categories/roadmap).
+2\. Set the following environment variables in `.env`:
 
-Follow the [Upgrade Guides](https://docs.medusajs.com/upgrade-guides/) to keep your Medusa project up-to-date.
+```bash
+ECONT_USERNAME=<YOUR_ECONT_USERNAME>
+ECONT_PASSWORD=<ECONT_PASSWORD>
+ECONT_SERVICE_URL=<ECONT_SERVICE_URL>
+```
+
+3\. In `medusa-config.js` add the following at the end of the `plugins` array:
+
+```js
+const plugins = [
+  // ...
+  {
+    resolve: "medusa-fulfillment-econt",
+    options: {
+      username: process.env.ECONT_USERNAME,
+      password: process.env.ECONT_PASSWORD,
+      service_url: process.env.ECONT_SERVICE_URL || "https://demo.econt.com/ee/services",
+    }
+  },
+]
+```
 
 Check out all [available Medusa plugins](https://medusajs.com/plugins/).
 
-## Community & Contributions
-
-The community and core team are available in [GitHub Discussions](https://github.com/medusajs/medusa/discussions), where you can ask for support, discuss roadmap, and share ideas.
 
 Join our [Discord server](https://discord.com/invite/medusajs) to meet other community members.
 
 ## Other channels
 
-- [GitHub Issues](https://github.com/medusajs/medusa/issues)
-- [Twitter](https://twitter.com/medusajs)
-- [LinkedIn](https://www.linkedin.com/company/medusajs)
+- [GitHub Issues](https://github.com/tsvetann/medusa-fulfillment-econt/issues)
+- [Twitter](https://twitter.com/tsnnik)
 - [Medusa Blog](https://medusajs.com/blog/)
