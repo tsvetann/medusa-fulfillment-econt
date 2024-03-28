@@ -27,6 +27,14 @@ class EcontOfficeService extends TransactionBaseService {
 
     return officeRepo.find({ where: { city_name: Like(`%${name.toLowerCase()}%`) } })
   }
+
+  async searchByOfficeName(name: string): Promise<IEcontOffice[]> {
+    const officeRepo = this.activeManager_.withRepository(
+      this.officeRepository_
+    )
+
+    return officeRepo.find({ where: { name: Like(`%${name.toLowerCase()}%`) } })
+  }
 }
 
 export default EcontOfficeService
