@@ -77,6 +77,11 @@ const plugins = [
 ]
 ```
 
+4\. Routes
+
+`BACKEND_URL/store/econt/offices/name/:name` - returns all offices for a city with `:name`
+`BACKEND_URL/store/econt/cities/postcode/:postcode` - returns all cities with a postcode (or partial postcode) `:postcode`
+
 Check out all [available Medusa plugins](https://medusajs.com/plugins/).
 
 

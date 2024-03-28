@@ -27,6 +27,14 @@ class EcontCityService extends TransactionBaseService {
 
     return cityRepo.find({ where: { post_code: Like(`${postcode}%`) } })
   }
+
+  async findCityById(id: number): Promise<ICityMapped> {
+    const cityRepo = this.activeManager_.withRepository(
+      this.cityRepository_
+    )
+
+    return cityRepo.findOneOrFail({ where: { id } })
+  }
 }
 
 export default EcontCityService

@@ -3,6 +3,7 @@ import type {
   MedusaResponse,
 } from "@medusajs/medusa"
 import EcontOfficeService from "src/services/econtOffice"
+import EcontCityService from "src/services/econtCity"
 
 export const GET = async (
   req: MedusaRequest,
@@ -15,10 +16,37 @@ export const GET = async (
       message: "Град не е намерен",
     })
   }
-  const econtOfficeService = req.scope.resolve("econtOfficeService") as EcontOfficeService
-  const records = await econtOfficeService.searchByCityName(name)
 
-  res.json({
-    records,
-  })
+  try {
+    const econtOfficeService = req.scope.resolve("econtOfficeService") as EcontOfficeService
+    const records = await econtOfficeService.searchByCityName(name)
+
+    if (records.length === 1) {
+      const office = records[0]
+
+      const econtCityService = req.scope.resolve("econtCityService") as EcontCityService
+      const city = await econtCityService.findCityById(office.city_fk)
+
+      return res.json({
+        records: [
+          {
+            ...office,
+            region_name: city.region_name,
+          },
+        ],
+        message: ""
+      })
+    }
+
+    res.json({
+      records,
+      message: ""
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+      records: [],
+    })
+  }
+
 }
