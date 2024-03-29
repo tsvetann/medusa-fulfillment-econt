@@ -4,7 +4,7 @@ class EcontRouter {
   private api: string = 'https://demo.econt.com/ee/services';
   private base64Credentials: string = '';
 
-  constructor(api: string, username: string, password: string) {
+  constructor(api: string, username: string = "iasp-dev", password: string = "1Asp-dev") {
     this.api = api;
     this.base64Credentials = Buffer.from(`${username}:${password}`).toString('base64');
   }
