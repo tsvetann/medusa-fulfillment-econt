@@ -1,6 +1,6 @@
 {
   "name": "medusa-fulfillment-econt",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Medusa fullfilment plugin for Econt.bg",
   "author": "Tsvetan Nikolov",
   "license": "MIT",
